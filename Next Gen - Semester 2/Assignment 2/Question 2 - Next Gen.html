@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+//'valueForm' creates an input field using Javascript DOM 
+function valueForm()
+    {
+        for (var i = 0; i < 4; i++) //the 'for' loop creates four input fields
+        {
+            document.write("<br>" + "Enter a value: " + "<br>")
+            var x = document.createElement("INPUT");//creates an input field
+            x.setAttribute("type", "text");
+            x.setAttribute("value", "");
+            x.setAttribute("id", "valueBox" + i); 
+            //'i' is used here to give an individual id to each input box
+            document.body.appendChild(x);//appends <x> to <body>
+        }
+        
+    }    
+valueForm();//calling the above function
+
+//'opForm' creates an input field using Javacsript DOM
+function opForm()
+    {
+        document.write("<br>" + "Enter an operation (+, -, *, /, neg, sqrt): " + "<br>");
+        var x = document.createElement("INPUT");//creates an iput field
+        x.setAttribute("type", "text");
+        x.setAttribute("value", "");
+        x.setAttribute("id", "opBox");
+        document.body.appendChild(x);//appends <x> to <body>
+    }
+opForm();//calling the above function
+    
+var btn = document.createElement("BUTTON");//creates a button
+var x = document.createTextNode("Apply");//creates a text node
+btn.appendChild(x);//appends the text <button>
+btn.onclick = outputApply;
+document.body.appendChild(btn);//appends <button> to <body>
+    
+var result;//holds the result of each operation
+    
+function apply(stack, op)//'stack' is an array holding numbers, 'op' are the operators +, - etc.
+    {
+        switch (op)//'switch' statement for the operators
+        { 
+            case "+":
+                result = +stack.pop() + +stack.pop();
+                //'pop' removes the last element from the array
+                stack.splice(2, 2, result); 
+                /*'splice' adds elements back into the array - the first parameter defines the position - the second parameter defines how many elements should be removed - the last parameter defines what new elements should be added*/
+                return stack;
+                break;
+            case "-":
+                result = stack.pop() - stack.pop();
+                stack.push(result);
+                //'push' returns the result and places it back at the end of the array
+                return stack;
+                break;
+            case "*":
+                result = stack.pop() * stack.pop();
+                stack.splice(2, 2, result); 
+                return stack;
+                break;
+            case "/":
+               result = stack.pop() / stack.pop();
+                stack.splice(2, 2, result); 
+                return stack;
+                break;
+            case "neg":
+                result = -stack.pop();
+                stack.splice(3, 0, result); 
+                return stack;
+                break;
+            case "sqrt":
+                result = Math.sqrt(stack.pop());
+                //'Math.sqrt' is a javasript function that gives the square root of a value
+                stack.splice(3, 1, result); 
+                return stack;
+                break;
+        }
+    }
+
+//'outputApply' uses the ids of the input fields and calls the functions 'valueForm' and 'opForm'
+function outputApply()
+    {
+        var op = document.getElementById("opBox").value;
+        var stack =[];
+        for (var i = 0; i < 4; i++)
+            {
+                stack.push(document.getElementById("valueBox" + i).value);
+            }
+        console.log(apply(stack, op));//writes the end result in the browser console
+    }
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+function Person(name, address, phoneNum) //person object 
+    {
+        this.fullName = name;
+        this.address = address;
+        this.phoneNum = phoneNum; 
+
+    }
+Person.prototype.show = function() //'this.show' function cannot be overridden unless outside the internal constructor and changed accordingly 
+        {
+            document.write("My name is " + this.fullName + " I live in " + this.address + " my phone number is " + this.phoneNum + " <br>"); 
+            //referring to the current object
+        };
+    
+function temp()
+    {
+        this.show = function()
+        {
+          document.write("Hi!" + "<br>");  //replaces all three person objects to "Hi!"
+        };
+    }
+Person.prototype = new temp(); //assigns the Person.prototype to the temp() function
+    
+    var aPerson = new Person("Sterling Archer", "Manhattan", 0851234567);
+    aPerson.show();
+    var bPerson = new Person("Malory Archer", "Condo, Miami", 0861234567);
+    bPerson.show();
+    var cPerson = new Person("Lana Kane", "Manhattan", 0871234567);
+    cPerson.show();  
+    
+/*When the method "show" is subsequently called for the three person objects, "Hi!" appears subsequently three times. The reason for this behaviour is due to the fact that "show" is replacing the previous "show" method that was called three times. Therefore it is called three times. */ 
+</script>
+</body>
+</html>

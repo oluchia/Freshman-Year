@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+    
+function add()
+    {
+        var r = [];//holds the matrix result array 
+        var arrays = arguments;
+        var count = arrays[0].length; 
+        var l = arrays.length;
+        var i, sum; 
+        var next = 0;
+        while (next < count) 
+            {
+                sum = 0, i = 0;
+                while (i < l)
+                    {
+                        sum += Number(arrays[i++][next]);
+                    }
+                r[next++] = sum;
+            }
+        return r;   
+    }
+
+var a = [1,2,3], b = [4,5,6], c = [4,5,6], d = [1,2,3];//matrices
+document.write("Answer " + add(a,b,c)); //final result
+
+    
+</script>
+</body>
+</html>

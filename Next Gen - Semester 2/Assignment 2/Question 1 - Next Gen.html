@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+
+var result;//holds the result of each operation
+    
+function apply(stack ,op)//'stack' is an array holding numbers, 'op' are the operators +, - etc.
+    {
+        switch (op)//'switch' statement for the operators
+        { 
+            case "+":
+                result = stack.pop() + stack.pop();//'pop' removes the last element from the array 
+                stack.splice(2, 2, result);
+                /*'splice' adds elements back into the array - the first parameter defines the position - the second parameter defines how many elements should be removed - the last parameter defines what new elements should be added*/
+                return stack;
+                break;
+            case "-":
+                result = stack.pop() - stack.pop();
+                stack.push(result);
+                //'push' returns the result and places it back at the end of the array
+                return stack;
+                break;
+            case "*":
+                result = stack.pop() * stack.pop();
+                stack.splice(2, 2, result); 
+                return stack;
+                break;
+            case "/":
+               result = stack.pop() / stack.pop();
+                stack.splice(2, 2, result); 
+                return stack;
+                break;
+            case "neg":
+                result = -stack.pop();
+                stack.splice(3, 0, result); 
+                return stack;
+                break;
+            case "sqrt":
+                result = Math.sqrt(stack.pop()); 
+                //'Math.sqrt' is a javasript function that gives the square root of a value
+                stack.splice(3, 1, result); 
+                return stack;
+                break;
+        }
+    }
+
+//'apply' function is called for each operator using the 'document.write' function
+document.write(apply([9, -8.2,7,6.5], "+") + "<br>");
+document.write(apply([9, -8.2,7,6.5], "-") + "<br>");
+document.write(apply([9,-8.2,7,6.5], "*") + "<br>");
+document.write(apply([9,-8.2,7,6.5], "/") + "<br>");
+document.write(apply([9,-8.2,7,6.5], "neg") + "<br>");
+document.write(apply([9,-8.2,7,6.5], "sqrt") + "<br>");
+    
+
+</script>
+</body>
+</html>

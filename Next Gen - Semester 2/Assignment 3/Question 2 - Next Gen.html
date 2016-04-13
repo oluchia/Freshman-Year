@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        tr { width: 300px; height: 100px } td { width: 100px; height: 100px } img { width: 100px; height: 100px } 
+    </style>
+<script>
+    
+    var myVar = setInterval(function() {moveImgRandomly()}, 200 ); //changes the image position every 200ms 
+    
+    var img = document.getElementById("monkey");
+    var tds = document.getElementsByTagName("td");
+    
+    function moveImgRandomly()
+    {
+        var x = Math.floor(Math.random() * 9); // 9 cells in the table 
+        tds[x].appendChild(monkey); //appends 'monkey' as the last child of the node 
+        
+    }
+
+</script>
+</head>
+<body>
+<table>
+<tr>
+    <td id = "td"></td> 
+    <td id = "td"></td>
+    <td id = "td"><img id="monkey" onclick="window.alert('Caught!')"  src="http://graemehobbs93.files.wordpress.com/2012/01/ape-1.jpg"/></td> 
+</tr>
+<tr>
+    <td id = "td"></td>
+    <td id = "td"></td>
+    <td id = "td"></td>
+</tr>
+<tr>
+    <td id = "td"></td>
+    <td id = "td"></td>
+    <td id = "td"></td>
+</tr>
+</table>
+</body>
+</html>
